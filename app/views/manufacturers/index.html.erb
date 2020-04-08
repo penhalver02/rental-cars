@@ -2,7 +2,7 @@
   <p>Nenhum fabricante cadastrado</p>
 <%else%>
   <% @manufacturers.each do |manufacturer|%>
-    <%= link_to manufacturer.name, manufacturer_path(manufacturer)%>
+    <%= link_to manufacturer.name, manufacturer%>
   <%end%>
 <%end%>
 <%= link_to 'Registrar novo fabricante', new_manufacturer_path%>
