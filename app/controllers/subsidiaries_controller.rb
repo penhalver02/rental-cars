@@ -17,6 +17,7 @@ class SubsidiariesController < ApplicationController
     if @subsidiary.save
       redirect_to @subsidiary
     else
+      flash[:alert] = 'Você deve informar os dados'
       render 'new'
     end
   end
@@ -31,6 +32,7 @@ class SubsidiariesController < ApplicationController
     if @subsidiary.update(subsidiary_params)
       redirect_to @subsidiary
     else
+      flash[:alert] = 'Você deve informar os dados'
       render 'new'
     end
   end

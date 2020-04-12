@@ -20,6 +20,9 @@ feature 'Admin register subsidiary' do
 
     expect(current_path).to eq subsidiary_path(Subsidiary.last.id)
     expect(page).to have_content('Fiat Rio')
+    expect(page).to have_content('12345')
+    expect(page).to have_content('rua verde')
     expect(page).to have_link('Voltar')
   end
+
 end
