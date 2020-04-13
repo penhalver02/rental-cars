@@ -1,11 +1,12 @@
+<h1>Cadastrar categoria de carro</h1>
 <%= form_for @car_category do |f|%>
-  <%= f.label :name, 'Nome'%>
-  <%= f.text_field :name%>
-  <%= f.label :daily_rate, 'Diaria'%>
-  <%= f.text_field :daily_rate%>
-  <%= f.label :car_insurance, 'Seguro'%>
-  <%= f.text_field :car_insurance%>
-  <%= f.label :third_party_insurance, 'Terceira parte do seguro'%>
-  <%= f.text_field :third_party_insurance%>
+  <%= f.label :name, 'Nome'%><br>
+  <%= f.text_field :name%><br>
+  <%= f.label :daily_rate, 'Diaria'%><br>
+  <%= f.text_field :daily_rate%><br>
+  <%= f.label :car_insurance, 'Seguro'%><br>
+  <%= f.text_field :car_insurance%><br>
+  <%= f.label :third_party_insurance, 'Terceira parte do seguro'%><br>
+  <%= f.text_field :third_party_insurance%><br>
   <%= f.submit 'Enviar'%>
 <%end%>

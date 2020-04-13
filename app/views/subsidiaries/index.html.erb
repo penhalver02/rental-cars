@@ -1,9 +1,12 @@
+<h1>Filiais cadastrada</h1>
+<%= link_to 'Registrar nova filial', new_subsidiary_path%>
+<ul>
+<% @subsidiaries.each do |subsidiary|%>
+  <li><%= link_to subsidiary.name, subsidiary%></li>
+<%end%>
+</ul>
 <%if @subsidiaries.empty?%>
   <p>Nenhuma filial cadastrada</p>
-<%else%>
-  <% @subsidiaries.each do |subsidiary|%>
-    <%= link_to subsidiary.name, subsidiary%>
-  <%end%>
 <%end%>
-<%= link_to 'Registrar nova filial', new_subsidiary_path%>
+
 <%= link_to 'Voltar', root_path%>

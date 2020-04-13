@@ -1,9 +1,12 @@
+<h1>Clientes cadastrados</h1>
+<%= link_to 'Registrar novo cliente', new_customer_path%>
+<ul>
+<% @customers.each do |customer|%>
+    <li><%= link_to customer.name, customer%></li>
+<%end%>
+</ul>
 <%if @customers.empty?%>
   <p>Nenhuma categoria cadastrada</p>
-<%else%>
-  <% @customers.each do |customer|%>
-    <%= link_to customer.name, customer%>
-  <%end%>
 <%end%>
-<%= link_to 'Registrar novo cliente', new_customer_path%>
+
 <%= link_to 'Voltar', root_path%>

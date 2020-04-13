@@ -1,9 +1,10 @@
+<h1>Cadastrar nova filia</h1>
 <%= form_for @subsidiary do |f|%>
-  <%= f.label :name, 'Nome'%>
-  <%= f.text_field :name %>
-  <%= f.label :cnpj, 'CNPJ'%>
-  <%= f.text_field :cnpj%>
-  <%= f.label :address, 'Endereço'%>
-  <%= f.text_field :address%>
+  <%= f.label :name, 'Nome'%><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :cnpj, 'CNPJ'%><br>
+  <%= f.text_field :cnpj%><br>
+  <%= f.label :address, 'Endereço'%><br>
+  <%= f.text_field :address%><br>
   <%= f.submit 'Enviar'%>
 <%end%>
