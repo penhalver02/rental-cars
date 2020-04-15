@@ -1,4 +1,10 @@
 <h1>Cadastrar nova filia</h1>
+
+<% @subsidiary.errors.full_messages.each do |massage|%>
+  <p><%= massage%></p>
+  
+<%end%>
+
 <%= form_for @subsidiary do |f|%>
   <%= f.label :name, 'Nome'%><br>
   <%= f.text_field :name %><br>
