@@ -1,4 +1,9 @@
 <h1>Cadastrar categoria de carro</h1>
+
+<% @car_category.errors.full_messages.each do |message|%>
+  <p><%= message %></p>
+<%end%>
+
 <%= form_for @car_category do |f|%>
   <%= f.label :name, 'Nome'%><br>
   <%= f.text_field :name%><br>

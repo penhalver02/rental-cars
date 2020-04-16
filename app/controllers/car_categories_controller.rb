@@ -13,8 +13,9 @@ class CarCategoriesController < ApplicationController
 
   def create
     @car_category = CarCategory.new(car_category_params)
-
+    
     if @car_category.save
+      
       redirect_to @car_category
     else
       render 'new'

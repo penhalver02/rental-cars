@@ -1,5 +1,6 @@
 <h1>Categoria de carro</h1>
-<%= link_to 'Registrar nova categoriaial', new_car_category_path%>
+
+<%= link_to 'Registrar nova categoria', new_car_category_path%>
 <ul>
 <% @car_categories.each do |car_category|%>
     <li><%= link_to car_category.name, car_category%></li>
