@@ -3,7 +3,12 @@
 <%= link_to 'Registrar nova categoria', new_car_category_path%>
 <ul>
 <% @car_categories.each do |car_category|%>
-    <li><%= link_to car_category.name, car_category%></li>
+  <dl>
+    <dt>Nome</dt>
+    <dd><%= link_to car_category.name, car_category%></li></dd>
+    <dt>Preço</dt>
+    <dd><%= number_to_currency(car_category.daily_rate)%></dd>
+  </dl>
 <%end%>
 </ul>
 <%if @car_categories.empty?%>
