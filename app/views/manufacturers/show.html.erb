@@ -1,3 +1,5 @@
 <h1>Detalhes da empresa</h1>
 <p><%= @manufacturer.name%></p>
+<%= link_to 'Apagar fabricante',manufacturer_path(@manufacturer), method: :delete, data: {confirm: 'Voce tem certeza?'}%>
+<br>
 <%= link_to 'Voltar', manufacturers_path%>
