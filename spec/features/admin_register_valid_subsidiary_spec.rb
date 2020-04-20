@@ -2,12 +2,12 @@ require 'rails_helper'
 
 feature 'Admim register valid subsidiary' do
   scenario 'and name and CNPJ must be unique' do
-    Subsidiary.create!(name: 'Fiat Rio',cnpj: '12345', address: 'rua verde')
+    Subsidiary.create!(name: 'Motorx',cnpj: '12345', address: 'rua verde')
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
 
-    fill_in 'Nome', with: 'Fiat Rio'
+    fill_in 'Nome', with: 'Motorx'
     fill_in 'CNPJ', with: '12345'
     fill_in 'Endereço', with: 'rua verde'
     click_on 'Enviar'

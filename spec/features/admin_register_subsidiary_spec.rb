@@ -13,15 +13,15 @@ feature 'Admin register subsidiary' do
     click_on 'Filiais'
     click_on 'Registrar nova filial'
 
-    fill_in 'Nome', with: 'Fiat Rio'
+    fill_in 'Nome', with: 'Motorx'
     fill_in 'CNPJ', with: '12345'
     fill_in 'Endereço', with: 'rua verde'
     click_on 'Enviar'
 
     expect(current_path).to eq subsidiary_path(Subsidiary.last.id)
-    expect(page).to have_content('Fiat Rio')
-    expect(page).to have_content('12345')
-    expect(page).to have_content('rua verde')
+    expect(page).to have_content('Filial: Motorx')
+    expect(page).to have_content('cnpj: 12345')
+    expect(page).to have_content('Endereço: rua verde')
     expect(page).to have_link('Voltar')
   end
 

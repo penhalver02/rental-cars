@@ -1,6 +1,6 @@
 <h1>Detalhes da filial</h1>
-<p><%= @subsidiary.name%></p>
-<p><%= @subsidiary.cnpj%></p>
-<p><%= @subsidiary.address%></p>
+<p><%="Filial: #{@subsidiary.name}"%></p>
+<p><%= "cnpj: #{@subsidiary.cnpj}"%></p>
+<p><%= "Endereço: #{@subsidiary.address}"%></p>
 <%= link_to 'Editar', edit_subsidiary_path(@subsidiary)%>
 <%= link_to 'Voltar', subsidiaries_path%>
