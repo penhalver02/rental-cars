@@ -1,8 +1,8 @@
 <h1>Detalhes de categorio de carro</h1>
-<p><%= @car_category.name%></p>
-<p><%= @car_category.daily_rate%></p>
-<p><%= @car_category.car_insurance%></p>
-<p><%= @car_category.third_party_insurance%></p>
+<p><%= "Modelo #{@car_category.name} "%></p>
+<p><%= "Preço da diaria: #{number_to_currency @car_category.daily_rate}"%></p>
+<p><%= "Preço do seguro: #{number_to_currency @car_category.car_insurance}"%></p>
+<p><%= "Preço do seguro para terceiro: #{number_to_currency @car_category.third_part_insurance}"%></p>
 
 
 <%= link_to 'Voltar', car_categories_path%>

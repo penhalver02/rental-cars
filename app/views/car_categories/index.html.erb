@@ -5,9 +5,9 @@
 <% @car_categories.each do |car_category|%>
   <dl>
     <dt>Nome</dt>
-    <dd><%= link_to car_category.name, car_category%></li></dd>
+    <dd><%= link_to "Modelo #{car_category.name}", car_category %></dd>
     <dt>Preço</dt>
-    <dd><%= number_to_currency(car_category.daily_rate)%></dd>
+    <dd><%= "Preço da diaria: #{number_to_currency(car_category.daily_rate)}"%></dd>
   </dl>
 <%end%>
 </ul>
