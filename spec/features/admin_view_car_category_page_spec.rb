@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'Admin view subsidiary' do
   scenario 'successfully' do
-    CarCategory.create(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
-    CarCategory.create(name: 'B', daily_rate: 50, car_insurance: 90, third_part_insurance: 40)
+    CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    CarCategory.create!(name: 'B', daily_rate: 50, car_insurance: 90, third_part_insurance: 40)
 
     visit root_path
     click_on 'Categorias de carro'
@@ -15,7 +15,7 @@ feature 'Admin view subsidiary' do
   end 
 
   scenario 'and view details' do
-    CarCategory.create(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
     
 
     visit root_path
@@ -38,8 +38,8 @@ feature 'Admin view subsidiary' do
   end
 
   scenario 'and return to home page' do
-    CarCategory.create(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
-    CarCategory.create(name: 'B', daily_rate: 50, car_insurance: 90, third_part_insurance: 40)
+    CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    CarCategory.create!(name: 'B', daily_rate: 50, car_insurance: 90, third_part_insurance: 40)
 
     visit root_path
     click_on 'Categorias de carro'
@@ -49,8 +49,8 @@ feature 'Admin view subsidiary' do
   end
 
   scenario 'and return to car category' do
-    CarCategory.create(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
-    CarCategory.create(name: 'B', daily_rate: 50, car_insurance: 90, third_part_insurance: 40)
+    CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    CarCategory.create!(name: 'B', daily_rate: 50, car_insurance: 90, third_part_insurance: 40)
 
     visit root_path
     click_on 'Categorias de carro'

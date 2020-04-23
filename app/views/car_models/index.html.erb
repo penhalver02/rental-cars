@@ -1,0 +1,13 @@
+<h1>Modelos de carros</h1>
+
+<%= @car_models.each do |car_model|%>
+  <%= link_to car_model.name, car_model%>
+  <%= car_model.year %>
+  <%= car_model.manufacturer.name%>
+<%end%>
+
+<% if @car_models.empty? %>
+  <p>Nenhum modelo cadastrado</p>
+<%end%>
+
+<%= link_to 'Voltar', root_path%>

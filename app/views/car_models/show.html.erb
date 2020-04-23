@@ -1,0 +1,13 @@
+<h1>Detalhes do carro</h1>
+
+<%= "Nome: #{@car_model.name}" %>
+<%= "Ano: #{@car_model.year}" %>
+<%= "Fabricante: #{@car_model.manufacturer.name}" %>
+<%= "Motor: #{@car_model.motorization}" %>
+<%= "Tipo de combustível: #{@car_model.fuel_type}" %>
+<%= "Categoria: #{@car_model.car_category.name}" %>
+<%= "Preço: #{number_to_currency @car_model.car_category.daily_rate}" %>
+<%= "Preço do seguro: #{number_to_currency @car_model.car_category.daily_rate}" %>
+<%= "Preço do seguro para terceiros: #{number_to_currency @car_model.car_category.third_part_insurance}" %>
+
+<%= link_to 'Voltar', car_models_path%>

@@ -25,7 +25,7 @@ require 'rails_helper'
       expect(page).to have_content('Endereço: rua verde')
     
     end
-    #####
+    
     scenario 'and no subsidiary are created' do
       visit root_path
       click_on 'Filiais'
