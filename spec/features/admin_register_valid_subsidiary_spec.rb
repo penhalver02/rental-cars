@@ -28,4 +28,19 @@ feature 'Admim register valid subsidiary' do
     expect(page).to have_content('não pode ficar em branco')
   end
 
+  scenario 'cnpj must be valid' do
+    
+    visit root_path
+    click_on 'Filiais'
+    click_on 'Registrar nova filial'
+
+    fill_in 'Nome', with: 'Motorx'
+    fill_in 'CNPJ', with: '56727689000105'
+    fill_in 'Endereço', with: 'rua verde'
+    click_on 'Enviar'
+
+    expect(page).to have_content('nao e valido')
+    
+  end
+
 end
