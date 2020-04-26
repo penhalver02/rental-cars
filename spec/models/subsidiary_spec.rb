@@ -2,23 +2,45 @@ require 'rails_helper'
 
 RSpec.describe Subsidiary, type: :model do
   context 'validation' do
-    it 'name cannot be blank' do
-      subsidiary = Subsidiary.new
+    context '#name' do
+      it 'name cannot be blank' do
+        subsidiary = Subsidiary.new
 
-      subsidiary.valid?
+        subsidiary.valid?
 
-      expect(subsidiary.errors[:name]).to include('Todos atributos não podem ficar em branco')
-      expect(subsidiary.errors[:cnpj]).to include('Todos atributos não podem ficar em branco')
-      expect(subsidiary.errors[:address]).to include('Todos atributos não podem ficar em branco')
-    end
-
-    it 'and name must be uniq' do
-      Subsidiary.create!(name: 'Fiat Rio',cnpj: '12345', address: 'rua verde')
-      subsidiary = Subsidiary.new(name: 'Fiat Rio',cnpj: '5680', address: 'rua azul')
+        expect(subsidiary.errors[:name]).to include('não pode ficar em branco')
       
-      subsidiary.valid?
+      end
+    
+      it 'name must be unique' do
+        Subsidiary.create!(name: 'Fiat Rio',cnpj: '56.727.689/0001-05', address: 'rua verde')
+        subsidiary = Subsidiary.new(name: 'Fiat Rio',cnpj: '77.145.867/0001-60', address: 'rua azul')
+        
+        subsidiary.valid?
 
-      expect(subsidiary.errors[:name]).to include('Nome deve ser único')
+        expect(subsidiary.errors[:name]).to include('já está em uso')
+      end
     end
+    context '#cnpj' do
+      it 'cnpj cannot be blank' do
+        subsidiary = Subsidiary.new
+
+        subsidiary.valid?
+
+        expect(subsidiary.errors[:cnpj]).to include('não pode ficar em branco')
+      end
+
+      it 'cnpj must be valid format' do
+        subsidiary = Subsidiary.new(cnpj: '23.534.432/0010-00')
+        
+        subsidiary.valid?
+
+        expect(subsidiary.errors[:cnpj]).to include('nao e valido')
+      end
+      
+      
+    
+    end
+
   end
 end

@@ -2,8 +2,8 @@ require 'rails_helper'
 
   feature 'Visitor view subsidiary' do
     scenario 'successfully' do
-      Subsidiary.create!(name: 'Motorx',cnpj: '12345', address: 'rua verde')
-      Subsidiary.create!(name: 'Ccar',cnpj: '5678', address: 'rua azul')
+      Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
+      Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
 
       visit root_path
       click_on 'Filiais'
@@ -14,14 +14,14 @@ require 'rails_helper'
     end
 
     scenario 'and view details' do
-      Subsidiary.create!(name: 'Motorx',cnpj: '12345', address: 'rua verde')
+      Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
 
       visit root_path
       click_on 'Filiais'
       click_on 'Motorx'
 
       expect(page).to have_content('Filial: Motorx')
-      expect(page).to have_content('cnpj: 12345')
+      expect(page).to have_content('cnpj: 56.727.689/0001-05')
       expect(page).to have_content('Endereço: rua verde')
     
     end
@@ -34,8 +34,8 @@ require 'rails_helper'
     end
 
     scenario 'and return to home page' do
-      Subsidiary.create!(name: 'Motorx',cnpj: '12345', address: 'rua verde')
-      Subsidiary.create!(name: 'Ccar',cnpj: '5678', address: 'rua azul')
+      Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
+      Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
 
       visit root_path
       click_on 'Filiais'
@@ -45,8 +45,8 @@ require 'rails_helper'
     end
 
     scenario 'and return to subsidiary page' do
-      Subsidiary.create!(name: 'Motorx',cnpj: '12345', address: 'rua verde')
-      Subsidiary.create!(name: 'Ccar',cnpj: '5678', address: 'rua azul')
+      Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
+      Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
 
       visit root_path
       click_on 'Filiais'
