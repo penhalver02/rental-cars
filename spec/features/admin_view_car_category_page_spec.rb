@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin view subsidiary' do
+feature 'Admin view car category' do
   scenario 'successfully' do
     CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
     CarCategory.create!(name: 'B', daily_rate: 50, car_insurance: 90, third_part_insurance: 40)
@@ -8,25 +8,49 @@ feature 'Admin view subsidiary' do
     visit root_path
     click_on 'Categorias de carro'
 
-    expect(page).to have_content('Modelo A')
+    expect(page).to have_content('Categoria A')
     expect(page).to have_content('Preço da diaria: R$ 100,00')
-    expect(page).to have_content('Modelo B')
+    expect(page).to have_content('Categoria B')
     expect(page).to have_content('Preço da diaria: R$ 50,00')
   end 
 
   scenario 'and view details' do
-    CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    car_category = CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    manufacturer = Manufacturer.create!(name: 'Fiat')
+    uno = CarModel.create!(name: 'Uno', year: 2020, manufacturer: manufacturer, motorization: '1.0', fuel_type: 'Flex', 
+                          car_category: car_category)
+    mobi = CarModel.create!(name: 'Mobi', year: 2020, manufacturer: manufacturer, motorization: '1.0', fuel_type: 'Flex', 
+                            car_category: car_category)
     
 
     visit root_path
     click_on 'Categorias de carro'
-    click_on 'Modelo A'
+    click_on 'Categoria A'
 
-    expect(page).to have_content('Modelo A')
+    expect(page).to have_content('Categoria A')
     expect(page).to have_content('Preço da diaria: R$ 100,00')
     expect(page).to have_content('Preço do seguro: R$ 100,00')
     expect(page).to have_content('Preço do seguro para terceiro: R$ 50,00')
+    expect(page).to have_link('Uno', href: car_model_path(uno))
+    expect(page).to have_link('Mobi', href: car_model_path(mobi))
 
+  end
+
+  scenario 'and view filtered car models' do
+    car_category_a = CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    car_category_b = CarCategory.create!(name: 'B', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    manufacturer = Manufacturer.create!(name: 'Fiat')
+    uno = CarModel.create!(name: 'Uno', year: 2020, manufacturer: manufacturer, motorization: '1.0', fuel_type: 'Flex', 
+                          car_category: car_category_a)
+    toro = CarModel.create!(name: 'Toro', year: 2020, manufacturer: manufacturer, motorization: '1.0', fuel_type: 'Flex', 
+        car_category: car_category_b)
+
+    visit root_path
+    click_on 'Categorias de carro'
+    click_on 'Categoria A'
+
+    expect(page).to have_link('Uno', href: car_model_path(uno))
+    expect(page).not_to have_link('Toto')
   end
 
   scenario 'and no car category are created' do
@@ -54,7 +78,7 @@ feature 'Admin view subsidiary' do
 
     visit root_path
     click_on 'Categorias de carro'
-    click_on 'Modelo A'
+    click_on 'Categoria A'
     click_on 'Voltar'
 
     expect(current_path).to eq car_categories_path

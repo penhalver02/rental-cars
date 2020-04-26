@@ -20,7 +20,7 @@ feature 'Admin register car category' do
     click_on 'Enviar'
 
     expect(current_path).to eq car_category_path(CarCategory.last.id)
-    expect(page).to have_content('Modelo A')
+    expect(page).to have_content('Categoria A')
     expect(page).to have_content('Preço da diaria: R$ 100,00')
     expect(page).to have_content('Preço do seguro: R$ 100,00')
     expect(page).to have_content('Preço do seguro para terceiro: R$ 50,00')
