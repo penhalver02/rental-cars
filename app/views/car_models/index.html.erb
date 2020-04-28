@@ -1,5 +1,6 @@
 <h1>Modelos de carros</h1>
 
+<%= link_to 'Cadastrar modelo de carro', new_car_model_path %>
 <%= @car_models.each do |car_model|%>
   <%= link_to car_model.name, car_model%>
   <%= car_model.year %>
