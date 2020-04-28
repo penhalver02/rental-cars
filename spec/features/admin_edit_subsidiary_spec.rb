@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Admin update subsidiary' do
-  scenario 'successfuly' do
+  scenario 'successfully' do
     Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
 
     visit root_path

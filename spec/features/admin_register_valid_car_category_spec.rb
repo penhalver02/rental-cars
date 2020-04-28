@@ -9,7 +9,7 @@ feature 'Admin register valid car category' do
     click_on 'Registrar nova categoria'
 
    
-    fill_in 'Modelo', with: 'A'
+    fill_in 'Categoria', with: 'A'
     fill_in 'Preço da diaria', with: 100
     fill_in 'Preço do seguro', with: 100
     fill_in 'Preço do seguro para terceiro', with: 50
@@ -25,7 +25,7 @@ feature 'Admin register valid car category' do
 
 
     
-    fill_in 'Modelo', with: ''
+    fill_in 'Categoria', with: ''
     fill_in 'Preço da diaria', with: ''
     fill_in 'Preço do seguro', with: ''
     fill_in 'Preço do seguro para terceiro', with: ''

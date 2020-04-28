@@ -3,7 +3,7 @@
 <p><%= "Preço da diaria: #{number_to_currency @car_category.daily_rate}"%></p>
 <p><%= "Preço do seguro: #{number_to_currency @car_category.car_insurance}"%></p>
 <p><%= "Preço do seguro para terceiro: #{number_to_currency @car_category.third_part_insurance}"%></p>
-
+<%= link_to 'Editar', edit_car_category_path(@car_category) %>
 <h3>Modelos de carros</h3>
 
 <% @car_category.car_models.each do |car_model|%>
