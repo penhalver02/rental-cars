@@ -39,7 +39,7 @@ feature 'Admim register valid subsidiary' do
     fill_in 'Endereço', with: 'rua verde'
     click_on 'Enviar'
 
-    expect(page).to have_content('nao e valido')
+    expect(page).to have_content('Cnpj não é válido')
     
   end
 

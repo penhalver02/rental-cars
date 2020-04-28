@@ -14,14 +14,15 @@ feature 'User register customer' do
     click_on 'Registrar novo cliente'
 
     fill_in 'Nome', with: 'Lucas'
-    fill_in 'CPF', with: '123.45'
+    fill_in 'CPF', with: '382.162.338-17'
     fill_in 'Email', with: 'lucas@gmail.com'
     click_on 'Enviar'
 
     expect(current_path).to eq customer_path(Customer.last.id)
     expect(page).to have_content('Lucas')
-    expect(page).to have_content('123.45')
+    expect(page).to have_content('382.162.338-17')
     expect(page).to have_content('lucas@gmail.com')
     expect(page).to have_link('Voltar')
   end
+
 end

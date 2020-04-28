@@ -2,18 +2,17 @@ require 'rails_helper'
 
 feature 'User register valid customer' do
   scenario 'and cpf and email must be unique' do
-    Customer.create!(name: 'Lucas',cpf: '123.45',email: 'lucas@gmail.com')
+    Customer.create!(name: 'Lucas',cpf: '382.162.338-17',email: 'lucas@gmail.com')
     visit root_path
     click_on 'Clientes'
     click_on 'Registrar novo cliente'
 
     fill_in 'Nome', with: 'Lucas'
-    fill_in 'CPF', with: '123.45'
+    fill_in 'CPF', with: '382.162.338-17'
     fill_in 'Email', with: 'lucas@gmail.com'
     click_on 'Enviar'
 
-    expect(page).to have_content('CPF deve ser único')
-    expect(page).to have_content('Email deve ser único')
+    expect(page).to have_content('já está em uso')
   end
 
   scenario 'and attribute can not be blank' do
@@ -27,6 +26,19 @@ feature 'User register valid customer' do
     fill_in 'Email', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content('Todos atributos não podem ficar em branco')
+    expect(page).to have_content('não pode ficar em branco')
+  end
+
+  scenario 'cpf invalid' do
+    visit root_path
+    click_on 'Clientes'
+    click_on 'Registrar novo cliente'
+
+    fill_in 'Nome', with: 'Lucas'
+    fill_in 'CPF', with: '181.122.338-17'
+    fill_in 'Email', with: 'lucas@gmail.com'
+    click_on 'Enviar'
+    
+    expect(page).to have_content('Cpf não é válido')
   end
 end

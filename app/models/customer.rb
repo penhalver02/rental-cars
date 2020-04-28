@@ -1,5 +1,14 @@
 class Customer < ApplicationRecord
-  validates :cpf, uniqueness: {message: 'CPF deve ser único'}
-  validates :email, uniqueness: {message: 'Email deve ser único'} 
-  validates :name, :cpf, :email, presence: {message: 'Todos atributos não podem ficar em branco'}
+  validates :cpf, :email, uniqueness: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  validates :name, :cpf, :email, presence: true
+  validate :cpf_must_be_valid
+
+  private
+
+  def cpf_must_be_valid
+    unless CPF.valid?(cpf)
+      errors.add(:cpf, :invalid)
+    end
+  end
 end
