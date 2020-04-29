@@ -10,7 +10,7 @@ feature 'Admin register valid manufacturer' do
     fill_in 'Nome', with: 'Fiat'
     click_on 'Enviar'
 
-    expect(page).to have_content('Nome deve ser único')
+    expect(page).to have_content('Nome já está em uso')
   end
 
   scenario 'and name can not be blank' do

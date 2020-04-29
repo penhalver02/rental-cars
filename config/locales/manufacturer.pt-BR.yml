@@ -1,0 +1,8 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        manufacturer: Fabricantes
+      attributes:
+        manufacturer:
+          name: Nome
