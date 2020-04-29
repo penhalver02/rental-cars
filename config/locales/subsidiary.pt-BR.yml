@@ -1,0 +1,10 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        subsidiary: Fabricante
+      attributes:
+        subsidiary:
+          name: Nome
+          cnpj: CNPJ
+          address: Endereço

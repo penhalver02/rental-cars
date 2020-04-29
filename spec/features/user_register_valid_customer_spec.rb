@@ -12,7 +12,7 @@ feature 'User register valid customer' do
     fill_in 'Email', with: 'lucas@gmail.com'
     click_on 'Enviar'
 
-    expect(page).to have_content('já está em uso')
+    expect(page).to have_content('CPF já está em uso')
   end
 
   scenario 'and attribute can not be blank' do
@@ -26,7 +26,9 @@ feature 'User register valid customer' do
     fill_in 'Email', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content('não pode ficar em branco')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('CPF não pode ficar em branco')
+    expect(page).to have_content('Email não pode ficar em branco')
   end
 
   scenario 'cpf invalid' do
@@ -39,6 +41,6 @@ feature 'User register valid customer' do
     fill_in 'Email', with: 'lucas@gmail.com'
     click_on 'Enviar'
     
-    expect(page).to have_content('Cpf não é válido')
+    expect(page).to have_content('CPF não é válido')
   end
 end

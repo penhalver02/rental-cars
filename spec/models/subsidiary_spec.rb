@@ -49,13 +49,13 @@ RSpec.describe Subsidiary, type: :model do
       
     end
 
-    context '#name' do
+    context '#address' do
       it 'name cannot be blank' do
         subsidiary = Subsidiary.new
 
         subsidiary.valid?
 
-        expect(subsidiary.errors[:name]).to include('não pode ficar em branco')
+        expect(subsidiary.errors[:address]).to include('não pode ficar em branco')
       end
     end
   end

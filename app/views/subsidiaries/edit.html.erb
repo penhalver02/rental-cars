@@ -1,10 +1,10 @@
 <h1>Cadastrar nova filial</h1>
 <%= form_for @subsidiary do |f|%>
-  <%= f.label :name, 'Nome'%>
+  <%= f.label :name%>
   <%= f.text_field :name%>
-  <%= f.label :cnpj, 'CNPJ'%>
+  <%= f.label :cnpj%>
   <%= f.text_field :cnpj%>
-  <%= f.label :address, 'Endereço'%>
+  <%= f.label :address%>
   <%= f.text_field :address%>
   <%= f.submit 'Enviar'%>
 <%end%>

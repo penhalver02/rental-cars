@@ -12,7 +12,7 @@ feature 'Admim register valid subsidiary' do
     fill_in 'Endereço', with: 'rua verde'
     click_on 'Enviar'
 
-    expect(page).to have_content('já está em uso')
+    expect(page).to have_content('CNPJ já está em uso')
   end
 
   scenario 'and attributes can not be blank' do
@@ -25,7 +25,9 @@ feature 'Admim register valid subsidiary' do
     fill_in 'Endereço', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content('não pode ficar em branco')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('CNPJ não pode ficar em branco')
+    expect(page).to have_content('Endereço não pode ficar em branco')
   end
 
   scenario 'cnpj must be valid' do
@@ -39,7 +41,7 @@ feature 'Admim register valid subsidiary' do
     fill_in 'Endereço', with: 'rua verde'
     click_on 'Enviar'
 
-    expect(page).to have_content('Cnpj não é válido')
+    expect(page).to have_content('CNPJ não é válido')
     
   end
 

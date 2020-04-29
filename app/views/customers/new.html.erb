@@ -4,11 +4,11 @@
   <p><%= message %></p>
 <%end%>
 <%= form_for @customer do |f|%>
-  <%= f.label :name, 'Nome'%><br>
+  <%= f.label :name%><br>
   <%= f.text_field :name%><br>
-  <%= f.label :cpf, 'CPF'%><br>
+  <%= f.label :cpf%><br>
   <%= f.text_field :cpf%><br>
-  <%= f.label :email, 'Email'%><br>
+  <%= f.label :email%><br>
   <%= f.text_field :email%><br>
   <%= f.submit 'Enviar'%>
 <%end%>
