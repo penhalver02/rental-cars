@@ -1,0 +1,6 @@
+<h1>Detalhes de locacao</h1>
+
+<p><%= "Data de inicio: #{l @rental.start_date}" %></p>
+<p><%= "Data de termino: #{l @rental.end_date}" %></p>
+<p><%= "Cliente: #{@rental.customer.name}" %></p>
+<p><%= "Categoria: #{@rental.car_category.name}" %></p>
