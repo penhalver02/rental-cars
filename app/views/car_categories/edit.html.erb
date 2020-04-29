@@ -5,13 +5,13 @@
 <%end%>
 
 <%= form_for @car_category do |f|%>
-  <%= f.label :name, 'Categoria'%><br>
+  <%= f.label :name%><br>
   <%= f.text_field :name%><br>
-  <%= f.label :daily_rate, 'Preço da diaria'%><br>
+  <%= f.label :daily_rate%><br>
   <%= f.text_field :daily_rate%><br>
-  <%= f.label :car_insurance, 'Preço do seguro'%><br>
+  <%= f.label :car_insurance%><br>
   <%= f.text_field :car_insurance%><br>
-  <%= f.label :third_part_insurance, 'Preço do seguro para terceiro'%><br>
+  <%= f.label :third_part_insurance%><br>
   <%= f.text_field :third_part_insurance%><br>
   <%= f.submit 'Enviar'%>
 <%end%>

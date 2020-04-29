@@ -1,0 +1,11 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        car_category: Categoria de carro
+      attributes:
+        car_category:
+          name: Categoria
+          daily_rate: Preço da diaria
+          car_insurance: Preço do seguro
+          third_part_insurance: Preço do seguro para terceiro
