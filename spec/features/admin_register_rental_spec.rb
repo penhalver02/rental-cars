@@ -21,4 +21,15 @@ feature 'Admin register rental' do
     expect(page).to have_content("Categoria: #{car_category.name}")
 
   end
+
+  scenario 'and fill in all fields' do
+    visit new_rental_path
+
+    click_on 'Enviar'
+  
+    expect(page).to have_content('Data de inicio não pode ficar em branco')
+    expect(page).to have_content('Data de termino não pode ficar em branco')
+    expect(page).to have_content('Cliente é obrigatório(a)')
+    expect(page).to have_content('Categoria de carro é obrigatório(a)')
+  end
 end

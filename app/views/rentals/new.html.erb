@@ -1,13 +1,17 @@
 <h1>Nova locaçao</h1>
 
+<%= @rental.errors.full_messages.each do |message| %>
+  <%= @message %>
+<% end %>
+
 <%= form_with model: @rental, local: true do |f| %>
-  <%= f.label :start_date, 'Data de inicio' %>
+  <%= f.label :start_date %>
   <%= f.date_field :start_date %>
-  <%= f.label :end_date, 'Data de termino' %>
+  <%= f.label :end_date %>
   <%= f.date_field :end_date %>
-  <%= f.label :customer_id, 'Cliente' %>
+  <%= f.label :customer_id %>
   <%= f.collection_select :customer_id, @customers, :id, :name%>
-  <%= f.label :car_category_id, 'Categoria' %>
+  <%= f.label :car_category_id %>
   <%= f.collection_select :car_category_id, @car_categories, :id, :name%>
   <%= f.submit 'Enviar' %>
 <% end %>
