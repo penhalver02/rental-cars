@@ -1,3 +1,16 @@
 <h1>Locações</h1>
 
 <%= link_to 'Registrar novas locações', new_rental_path %>
+
+  <% @rentals.each do |rental|%>
+    <%= rental.customer.name %>
+    <%= "Categoria #{rental.car_category.name}" %>
+    <%= "Data #{l rental.start_date} a #{l rental.end_date}" %>
+    <%= link_to 'detalhes', rental %>
+  <% end %>
+
+<% if @rentals.empty?%>
+  <p>Nenhuma locacao cadastrada</p>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>
