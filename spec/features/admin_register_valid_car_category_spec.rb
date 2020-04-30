@@ -19,4 +19,18 @@ feature 'Admin register valid car category' do
     expect(page).to have_content('Preço do seguro não pode ficar em branco')
     expect(page).to have_content('Preço do seguro para terceiro não pode ficar em branco')
   end
+
+  scenario 'daily rate must be valid' do
+    visit root_path
+    click_on 'Categorias de carro'
+    click_on 'Registrar nova categoria'
+
+    fill_in 'Categoria', with: 'A'
+    fill_in 'Preço da diaria', with: '0'
+    fill_in 'Preço do seguro', with: '100'
+    fill_in 'Preço do seguro para terceiro', with: '50'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Preço da diaria deve ser maior que 0')
+  end
 end
