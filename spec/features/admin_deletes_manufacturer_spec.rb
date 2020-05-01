@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'Admin deletes manufacturer' do
   scenario 'successfully' do
     Manufacturer.create!(name: 'Fiat')
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -16,7 +18,9 @@ feature 'Admin deletes manufacturer' do
   scenario 'and keep anothers' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Honda')
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -26,4 +30,5 @@ feature 'Admin deletes manufacturer' do
     expect(page).not_to have_content('Fiat')
     expect(page).to have_content('Honda')
   end
+
 end
