@@ -9,4 +9,8 @@
   <p>Nenhuma categoria cadastrada</p>
 <%end%>
 
+<% if @customers.empty?%>
+  <p>Nenhum cliente cadastrado</p>
+<% end %>
+
 <%= link_to 'Voltar', root_path%>

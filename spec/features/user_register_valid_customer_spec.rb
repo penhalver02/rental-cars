@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'User register valid customer' do
   scenario 'and cpf and email must be unique' do
     Customer.create!(name: 'Lucas',cpf: '382.162.338-17',email: 'lucas@gmail.com')
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Registrar novo cliente'
@@ -16,6 +19,9 @@ feature 'User register valid customer' do
   end
 
   scenario 'and attribute can not be blank' do
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Registrar novo cliente'
@@ -32,6 +38,9 @@ feature 'User register valid customer' do
   end
 
   scenario 'cpf invalid' do
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Clientes'
     click_on 'Registrar novo cliente'
