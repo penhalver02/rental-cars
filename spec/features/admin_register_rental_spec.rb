@@ -25,6 +25,8 @@ feature 'Admin register rental' do
   end
 
   scenario 'and fill in all fields' do
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+    login_as user, scope: :user
     visit new_rental_path
 
     click_on 'Enviar'
@@ -33,5 +35,11 @@ feature 'Admin register rental' do
     expect(page).to have_content('Data de termino não pode ficar em branco')
     expect(page).to have_content('Cliente é obrigatório(a)')
     expect(page).to have_content('Categoria de carro é obrigatório(a)')
+  end
+
+  scenario 'and must be authenticated' do
+    visit new_rental_path
+
+    expect(current_path).to eq(new_user_session_path)
   end
 end

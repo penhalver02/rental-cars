@@ -83,4 +83,20 @@ feature 'Admin view rental' do
 
     expect(page).not_to have_link('Locações')
   end
+
+  scenario 'canoot view unless logged in' do
+    visit rentals_path
+    
+    expect(current_path).to eq(new_user_session_path)
+  end
+
+  scenario 'cannot view unless logged in 'do
+    lucas = Customer.create!(name: 'Lucas', cpf: '382.162.338-17', email: 'lucas@gmail.com')
+    cat_a = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 50)
+    Rental.create!(start_date: '20/03/2030',end_date: '30/03/2030', customer: lucas, car_category: cat_a)
+    
+    visit rental_path(Rental.last.id)
+
+    expect(current_path).to eq(new_user_session_path)
+  end
 end

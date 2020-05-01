@@ -21,6 +21,12 @@ feature 'User authentication' do
     end
 
     xscenario 'and must fill in all fields' do
+      visit root_path
+      click_on 'Entrar'
+      
+
+      expect(page).to have_content('Email nao pode ficar em branco')
+      expect(page).to have_content('Senha nao pode ficar em branco')
     end
   end
 

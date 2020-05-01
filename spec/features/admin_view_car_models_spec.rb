@@ -7,7 +7,9 @@ feature 'Admin view car models' do
     cat_a = CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
     CarModel.create!(name: 'Gol', year: 2018,manufacturer: volkswagen, motorization: '1.0', car_category: cat_a, fuel_type: 'Gasolina')
     CarModel.create!(name: 'Uno', year: 2020,manufacturer: fiat, motorization: '1.4', car_category: cat_a, fuel_type: 'Gasolina' )
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de carros'
 
@@ -24,7 +26,9 @@ feature 'Admin view car models' do
     volkswagen = Manufacturer.create!(name: 'Volkswagen')
     cat_a = CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
     CarModel.create!(name: 'Gol', year: 2018,manufacturer: volkswagen, motorization: '1.0', car_category: cat_a, fuel_type: 'Gasolina')
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de carros'
     click_on 'Gol'
@@ -42,6 +46,9 @@ feature 'Admin view car models' do
   end
 
   scenario 'and no car model are created' do
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de carros'
 
@@ -56,7 +63,9 @@ feature 'Admin view car models' do
                       fuel_type: 'Gasolina')
     CarModel.create!(name: 'Uno', year: 2020,manufacturer: fiat, motorization: '1.4', car_category: cat_a, 
                       fuel_type: 'Gasolina' )
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de carros'
     click_on 'Voltar'
@@ -72,12 +81,38 @@ feature 'Admin view car models' do
                       fuel_type: 'Gasolina')
     CarModel.create!(name: 'Uno', year: 2020,manufacturer: fiat, motorization: '1.4', car_category: cat_a, 
                       fuel_type: 'Gasolina' )
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de carros'
     click_on 'Gol'
     click_on 'Voltar'
 
     expect(current_path).to eq car_models_path
+  end
+
+  scenario 'cannot view unless logged in' do
+    visit root_path
+
+    expect(page).not_to have_link('Modelos de carros')
+  end
+
+  scenario 'cannot view unless logged in' do
+    visit car_models_path
+
+    expect(current_path).to eq(new_user_session_path)
+  end
+
+  scenario 'cannot view unless logged in' do
+    volkswagen = Manufacturer.create!(name: 'Volkswagen')
+    fiat = Manufacturer.create!(name: 'Fiat')
+    cat_a = CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    CarModel.create!(name: 'Gol', year: 2018,manufacturer: volkswagen, motorization: '1.0', car_category: cat_a, 
+                      fuel_type: 'Gasolina')
+
+    visit car_model_path(CarModel.last.id)
+
+    expect(current_path).to eq(new_user_session_path)
   end
 end

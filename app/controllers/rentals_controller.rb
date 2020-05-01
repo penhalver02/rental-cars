@@ -1,4 +1,5 @@
 class RentalsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :new, :create, :show]
   def index
     @rentals = Rental.all
   end
