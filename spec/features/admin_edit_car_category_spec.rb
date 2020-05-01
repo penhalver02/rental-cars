@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'Admin edit car category' do
   scenario 'successfully' do
     CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Categorias de carro'
     click_on 'Categoria A'
@@ -20,5 +23,13 @@ feature 'Admin edit car category' do
     expect(page).to have_content('Preço do seguro: R$ 100,00')
     expect(page).to have_content('Preço do seguro para terceiro: R$ 50,00')
     expect(page).to have_link('Voltar')
+  end
+
+  scenario 'and must be authenticated' do
+    car_category = CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+
+    visit edit_car_category_path(car_category)
+
+    expect(current_path).to eq(new_user_session_path)
   end
 end
