@@ -4,7 +4,9 @@ feature 'Admin register rental' do
   scenario ' successfully' do
     customer = Customer.create!(name: 'Lucas',cpf: '167.876.920-72', email: 'lucas@gmail.com')
     car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 50)
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Locações'
     click_on 'Registrar novas locações'

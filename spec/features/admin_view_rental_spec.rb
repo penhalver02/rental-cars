@@ -6,6 +6,9 @@ feature 'Admin view rental' do
     cat_a = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 50)
     Rental.create!(start_date: '20/03/2030',end_date: '30/03/2030', customer: lucas, car_category: cat_a)
     Rental.create!(start_date: '01/03/2030',end_date: '10/03/2030', customer: lucas, car_category: cat_a)
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Locações'
@@ -23,7 +26,9 @@ feature 'Admin view rental' do
     lucas = Customer.create!(name: 'Lucas', cpf: '382.162.338-17', email: 'lucas@gmail.com')
     cat_a = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 50)
     Rental.create!(start_date: '20/03/2030',end_date: '30/03/2030', customer: lucas, car_category: cat_a)
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Locações'
     click_on 'detalhes'
@@ -35,6 +40,9 @@ feature 'Admin view rental' do
   end
 
   scenario ' and no rental are created' do
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Locações'
 
@@ -45,7 +53,9 @@ feature 'Admin view rental' do
     lucas = Customer.create!(name: 'Lucas', cpf: '382.162.338-17', email: 'lucas@gmail.com')
     cat_a = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 50)
     Rental.create!(start_date: '20/03/2030',end_date: '30/03/2030', customer: lucas, car_category: cat_a)
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Locações'
     click_on 'Voltar'
@@ -57,12 +67,20 @@ feature 'Admin view rental' do
     lucas = Customer.create!(name: 'Lucas', cpf: '382.162.338-17', email: 'lucas@gmail.com')
     cat_a = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 50)
     Rental.create!(start_date: '20/03/2030',end_date: '30/03/2030', customer: lucas, car_category: cat_a)
-
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+    
+    login_as user, scope: :user
     visit root_path
     click_on 'Locações'
     click_on 'detalhes'
     click_on 'Voltar'
 
     expect(current_path).to eq rentals_path
+  end
+
+  scenario 'cannot view unless logged in' do
+    visit root_path
+
+    expect(page).not_to have_link('Locações')
   end
 end
