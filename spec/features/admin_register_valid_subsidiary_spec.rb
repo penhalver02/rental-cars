@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'Admim register valid subsidiary' do
   scenario 'and name and CNPJ must be unique' do
     Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
@@ -16,6 +19,9 @@ feature 'Admim register valid subsidiary' do
   end
 
   scenario 'and attributes can not be blank' do
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
@@ -31,7 +37,9 @@ feature 'Admim register valid subsidiary' do
   end
 
   scenario 'cnpj must be valid' do
-    
+    user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+    login_as user, scope: :user
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
@@ -45,4 +53,9 @@ feature 'Admim register valid subsidiary' do
     
   end
 
+  scenario 'and must be authenticated' do
+    visit new_subsidiary_path
+
+    expect(current_path).to eq(new_user_session_path)
+  end
 end

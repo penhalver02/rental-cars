@@ -4,7 +4,9 @@ require 'rails_helper'
     scenario 'successfully' do
       Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
       Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
+      user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+      login_as user, scope: :user
       visit root_path
       click_on 'Filiais'
 
@@ -15,7 +17,9 @@ require 'rails_helper'
 
     scenario 'and view details' do
       Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
+      user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+      login_as user, scope: :user
       visit root_path
       click_on 'Filiais'
       click_on 'Motorx'
@@ -27,6 +31,9 @@ require 'rails_helper'
     end
     
     scenario 'and no subsidiary are created' do
+      user = User.create!(email: 'lucas@gmail.com', password: '12345678')
+
+      login_as user, scope: :user
       visit root_path
       click_on 'Filiais'
 
@@ -36,7 +43,9 @@ require 'rails_helper'
     scenario 'and return to home page' do
       Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
       Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
+      user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+      login_as user, scope: :user
       visit root_path
       click_on 'Filiais'
       click_on 'Voltar'
@@ -47,12 +56,34 @@ require 'rails_helper'
     scenario 'and return to subsidiary page' do
       Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
       Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
+      user = User.create!(email: 'lucas@gmail.com', password: '12345678')
 
+      login_as user, scope: :user
       visit root_path
       click_on 'Filiais'
       click_on 'Motorx'
       click_on 'Voltar'
 
       expect(current_path).to eq subsidiaries_path
+    end
+
+    scenario 'cannot view unless logged in' do
+      visit root_path
+
+      expect(page).not_to have_link('Categorias de carro')
+    end
+
+    scenario 'cannot view unless logged in' do
+      visit subsidiaries_path
+
+      expect(current_path).to eq(new_user_session_path)
+    end
+
+    scenario 'cannot view unless logged in' do
+      Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
+
+      visit subsidiary_path(Subsidiary.last.id)
+
+      expect(current_path).to eq(new_user_session_path)
     end
   end

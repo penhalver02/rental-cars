@@ -1,4 +1,5 @@
 class SubsidiariesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show, :new, :created, :edit, :update]
   def index
     @subsidiaries = Subsidiary.all
   end
