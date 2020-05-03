@@ -1,0 +1,11 @@
+<h1>detalhes de carro</h1>
+
+<p><%= "Nome: #{@car.car_model.name}" %></p>
+<p><%= "Quilometragem: #{@car.mileage}" %></p>
+<p><%= "Cor: #{@car.color}" %></p>
+<p><%= @car.car_model.manufacturer.name %></p>
+<p><%= "Categoria #{@car.car_model.car_category.name}" %></p>
+
+<%= link_to 'Voltar', cars_path %>
+
+

@@ -1,0 +1,12 @@
+<h1>Carros</h1>
+
+<%= @cars.each do |car| %>
+  <%= link_to car.car_model.name, car %>
+  <%= car.license_plate %>
+<% end %>
+
+<% if @cars.empty? %>
+  <p>Nenhum carro cadastrado</p>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>
