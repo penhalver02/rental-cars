@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :customers,  only: [:show, :index, :create, :new]
   resources :car_models, only: [:index, :show, :create, :new]
   resources :rentals, only: [:index, :new, :create, :show]
-  resources :cars, only: [:index, :show]
+  resources :cars, only: [:index, :show, :new, :create]
 end

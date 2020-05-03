@@ -1,0 +1,19 @@
+<h1>Cadastro de carro</h1>
+
+<%= @car.errors.full_messages.each do |message| %>
+  <%= message %>
+<% end %>
+
+<%= form_with model: @car, local: true do |f| %>
+  <%= f.label :license_plate %>
+  <%= f.text_field :license_plate %>
+  <%= f.label :color %>
+  <%= f.text_field :color %>
+  <%= f.label :mileage %>
+  <%= f.number_field :mileage %>
+  <%= f.label :car_model_id %>
+  <%= f.collection_select :car_model_id, @car_models, :id, :name %>
+  <%= f.label :subsidiary_id %>
+  <%= f.collection_select :subsidiary_id, @subsidiaries, :id, :name %>
+  <%= f.submit 'Enviar' %>
+<% end %>

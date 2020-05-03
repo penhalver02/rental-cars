@@ -1,0 +1,14 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        car: Cliente
+      attributes:
+        car:
+          license_plate: Placa
+          color: Cor
+          car_model: Modelo de carro
+          car_model_id: Modelo de carro
+          mileage: Quilometragem
+          subsidiary: Filial
+          subsidiary_id: Filial
