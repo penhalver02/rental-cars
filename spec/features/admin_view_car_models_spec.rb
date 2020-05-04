@@ -108,10 +108,10 @@ feature 'Admin view car models' do
     volkswagen = Manufacturer.create!(name: 'Volkswagen')
     fiat = Manufacturer.create!(name: 'Fiat')
     cat_a = CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
-    CarModel.create!(name: 'Gol', year: 2018,manufacturer: volkswagen, motorization: '1.0', car_category: cat_a, 
+    car_model = CarModel.create!(name: 'Gol', year: 2018,manufacturer: volkswagen, motorization: '1.0', car_category: cat_a, 
                       fuel_type: 'Gasolina')
 
-    visit car_model_path(CarModel.last.id)
+    visit car_model_path(car_model)
 
     expect(current_path).to eq(new_user_session_path)
   end

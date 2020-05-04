@@ -75,9 +75,9 @@ feature 'User view customer' do
   end
 
   scenario 'cannot view unless logged in' do
-    Customer.create!(name: 'Lucas', cpf: '382.162.338-17', email: 'lucas@gmail.com')
+    customer = Customer.create!(name: 'Lucas', cpf: '382.162.338-17', email: 'lucas@gmail.com')
     
-    visit customer_path(Customer.last.id)
+    visit customer_path(customer)
 
     expect(current_path).to eq(new_user_session_path)
   end

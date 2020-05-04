@@ -80,9 +80,9 @@ require 'rails_helper'
     end
 
     scenario 'cannot view unless logged in' do
-      Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
+      subsidiary = Subsidiary.create!(name: 'Ccar',cnpj: '77.145.867/0001-60', address: 'rua azul')
 
-      visit subsidiary_path(Subsidiary.last.id)
+      visit subsidiary_path(subsidiary)
 
       expect(current_path).to eq(new_user_session_path)
     end

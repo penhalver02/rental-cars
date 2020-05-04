@@ -93,9 +93,9 @@ feature 'Admin view rental' do
   scenario 'cannot view unless logged in 'do
     lucas = Customer.create!(name: 'Lucas', cpf: '382.162.338-17', email: 'lucas@gmail.com')
     cat_a = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 50)
-    Rental.create!(start_date: '20/03/2030',end_date: '30/03/2030', customer: lucas, car_category: cat_a)
+    rental = Rental.create!(start_date: '20/03/2030',end_date: '30/03/2030', customer: lucas, car_category: cat_a)
     
-    visit rental_path(Rental.last.id)
+    visit rental_path(rental)
 
     expect(current_path).to eq(new_user_session_path)
   end

@@ -78,9 +78,9 @@ feature 'Visitor view manufacturers' do
   end
 
   scenario 'cannot view unless logged in' do
-    Manufacturer.create!(name: 'Volkswagen')
+    manufacturer = Manufacturer.create!(name: 'Volkswagen')
 
-    visit manufacturer_path(Manufacturer.last.id)
+    visit manufacturer_path(manufacturer)
 
     expect(current_path).to eq(new_user_session_path)
   end

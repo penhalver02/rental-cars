@@ -109,9 +109,9 @@ feature 'Admin view car category' do
   end
 
   scenario 'cannot view unless logged in' do
-    CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
+    car_category = CarCategory.create!(name: 'A', daily_rate: 100,car_insurance: 100, third_part_insurance: 50)
 
-    visit car_category_path(CarCategory.last.id)
+    visit car_category_path(car_category)
 
     expect(current_path).to eq(new_user_session_path)
   end

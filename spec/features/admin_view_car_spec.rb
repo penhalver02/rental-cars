@@ -104,9 +104,9 @@ feature 'Admin view car ' do
     gol = CarModel.create!(name: 'Gol', year: 2018,manufacturer: volkswagen, motorization: '1.0', car_category: cat_a, 
                           fuel_type: 'Gasolina')
     mortorx = Subsidiary.create!(name: 'Motorx',cnpj: '56.727.689/0001-05', address: 'rua verde')
-    Car.create!(license_plate: 'EMS-3633', color: 'Preto', car_model: gol, mileage: '10000', subsidiary: mortorx)
+    car = Car.create!(license_plate: 'EMS-3633', color: 'Preto', car_model: gol, mileage: '10000', subsidiary: mortorx)
 
-    visit car_path(Car.last.id)
+    visit car_path(car)
 
     expect(current_path).to eq(new_user_session_path)
   end
