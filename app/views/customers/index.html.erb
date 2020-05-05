@@ -1,5 +1,12 @@
 <h1>Clientes cadastrados</h1>
 <%= link_to 'Registrar novo cliente', new_customer_path%>
+
+<%= form_with url: search_customers_path, method: :get do |f| %>
+  <%= f.label :q, 'Busca'%>
+  <%= f.search_field :q %>
+  <%= f.submit 'Buscar' %>
+<% end %>
+
 <ul>
 <% @customers.each do |customer|%>
     <li><%= link_to customer.name, customer%></li>

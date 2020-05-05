@@ -22,6 +22,10 @@ class CustomersController < ApplicationController
     end
   end
 
+  def search
+    @customers = Customer.where(name: params[:q])
+  end
+
   private
 
   def customer_params
