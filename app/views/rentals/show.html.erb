@@ -4,5 +4,6 @@
 <p><%= "Data de termino: #{l @rental.end_date}" %></p>
 <p><%= "Cliente: #{@rental.customer.name}" %></p>
 <p><%= "Categoria: #{@rental.car_category.name}" %></p>
+<p><%= "Codigo: #{@rental.code}" %></p>
 
 <%= link_to 'Voltar', rentals_path %>
