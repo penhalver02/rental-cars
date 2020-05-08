@@ -69,4 +69,43 @@ RSpec.describe Customer, type: :model do
       end
     end
   end
+
+  it 'by exact name' do
+    customer = Customer.create!(name: 'Lucas Penhalver', email: 'lucas@gmail.com', cpf: '198.296.657-20')
+    another_customer = Customer.create!(name: 'Caio', email: 'caio@gmail.com', cpf: '374.922.268-10')
+
+    result = Customer.search('Lucas Penhalver')
+
+    expect(result).to include(customer)
+    expect(result).not_to include(another_customer)
+  end
+
+  it 'by partial name' do
+    customer = Customer.create!(name: 'Lucas Penhalver', email: 'lucas@gmail.com', cpf: '198.296.657-20')
+    another_customer = Customer.create!(name: 'Caio', email: 'caio@gmail.com', cpf: '374.922.268-10')
+
+    result = Customer.search('Lucas')
+
+    expect(result).to include(customer)
+    expect(result).not_to include(another_customer)
+  end
+
+  it 'finds nothing' do
+    customer = Customer.create!(name: 'Lucas Penhalver', email: 'lucas@gmail.com', cpf: '198.296.657-20')
+    another_customer = Customer.create!(name: 'Caio', email: 'caio@gmail.com', cpf: '374.922.268-10')
+
+    result = Customer.search('test')
+
+    expect(result).to be_blank
+  end
+
+  it 'by cpf' do
+    customer = Customer.create!(name: 'Lucas Penhalver', email: 'lucas@gmail.com', cpf: '198.296.657-20')
+    another_customer = Customer.create!(name: 'Caio', email: 'caio@gmail.com', cpf: '374.922.268-10')
+
+    result = Customer.search('198.296.657-20')
+
+    expect(result).to include(customer)
+    expect(result).not_to include(another_customer)
+  end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User search customer' do
+feature 'successfully' do
   scenario 'by exact name' do
     user = User.create!(email: 'teste@teste.com', password: '123456789')
     customer = Customer.create!(name: 'Lucas', email: 'lucas@gmail.com', cpf: '198.296.657-20')
@@ -16,5 +16,17 @@ feature 'User search customer' do
     expect(page).to have_content(customer.email)
     expect(page).not_to have_content(another_customer.name)
     expect(page).not_to have_content(another_customer.email)
+  end
+
+  scenario 'cannot find ' do
+    user = User.create!(email: 'teste@teste.com', password: '123456789')
+    
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Clientes'
+    fill_in 'Busca', with: ''
+    click_on 'Buscar'
+
+    expect(page).to have_content('Nenhum resultado encontrado para:')
   end
 end

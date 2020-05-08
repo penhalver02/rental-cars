@@ -23,7 +23,12 @@ class CustomersController < ApplicationController
   end
 
   def search
-    @customers = Customer.where(name: params[:q])
+    @customers = Customer.search(params[:q])
+    if @customers.blank?
+      @customers = Customer.all
+      flash.now[:alert] = "Nenhum resultado encontrado para: #{params[:q]}"
+      render :index
+    end
   end
 
   private
