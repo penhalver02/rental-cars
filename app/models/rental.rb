@@ -5,7 +5,7 @@ class Rental < ApplicationRecord
   has_one :car, through: :car_rental
   validates :start_date, :end_date, presence: true
   before_create :generate_code
-
+  enum status: {scheduled: 0, ongoing: 5}
   private
 
   def generate_code

@@ -10,9 +10,11 @@
   <p>Usuario que iniciou: <%= @rental.car_rental.user.email %></p>
   <p>Data/Hora de inicio: <%= l(@rental.car_rental.created_at, format: :long) %></p>
   <p>Placa: <%= @rental.car_rental.car.license_plate%></p>
-  <p>Em progresso</p>
-  <p>Email do cliente <%= @rental.car_rental.rental.customer.email %></p>
-  <p>Nome do cliente: <%= @rental.car_rental.rental.customer.name %></p>
+  <% if @rental.ongoing?%>
+    <p>Em progresso</p>
+  <% end %>
+  <p>Email do cliente <%= @rental.customer.email %></p>
+  <p>Nome do cliente: <%= @rental.customer.name %></p>
 <% end %>
 <%= link_to 'Iniciar', new_rental_car_rental_path(@rental) %>
 <%= link_to 'Voltar', rentals_path %>
